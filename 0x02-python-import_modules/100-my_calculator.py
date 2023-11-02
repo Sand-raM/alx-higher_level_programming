@@ -2,25 +2,23 @@
 from sys import argv
 from calculator_1 import add, sub, mul, div
 
-if __name__ == "__main__":
-    argc = len(argv) - 1
-    if argc != 3:
+if __name__ == "__main":  # Corrected the condition
+    argc = len(argv)
+
+    if argc != 4:  # Check if there are exactly 3 arguments
         print("Usage: {:s} <a> <operator> <b>".format(argv[0]))
         exit(1)
-    a = int(argv[1])
-    operator = argv[2]
-    b = int(argv[3)
-
-    if operator == '+':
-        result = add(a, b)
-    elif operator == '-':
-        result = sub(a, b)
-    elif operator == '*':
-        result = mul(a, b)
-    elif operator == '/':
-        result = div(a, b)
+    elif argv[2] == '+':
+        func = add
+    elif argv[2] == '-':
+        func = sub
+    elif argv[2] == '*':
+        func = mul
+    elif argv[2] == '/':
+        func = div
     else:
         print("Unknown operator. Available operators: +, -, *, and /")
         exit(1)
 
-    print("{:d} {:s} {:d} = {:d}".format(a, operator, b, result))
+    result = func(int(argv[1]), int(argv[3]))
+    print("{:d} {:s} {:d} = {:d}".format(int(argv[1]), argv[2], int(argv[3]), result))
