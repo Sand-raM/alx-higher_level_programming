@@ -7,19 +7,20 @@ if __name__ == "__main__":
     if argc != 3:
         print("Usage: {:s} <a> <operator> <b>".format(argv[0]))
         exit(1)
-    a, operator, b = argv[1], argv[2], argv[3]
-    a, b = int(a), int(b)
+    a = int(argv[1])
+    operator = argv[2]
+    b = int(argv[3)
+
     if operator == '+':
-        func = add
+        result = add(a, b)
     elif operator == '-':
-        func = sub
+        result = sub(a, b)
     elif operator == '*':
-        func = mul
+        result = mul(a, b)
     elif operator == '/':
-        func = div
+        result = div(a, b)
     else:
         print("Unknown operator. Available operators: +, -, *, and /")
         exit(1)
 
-    result = func(a, b)
     print("{:d} {:s} {:d} = {:d}".format(a, operator, b, result))
