@@ -1,4 +1,4 @@
 #!/usr/bin/python3
+import os
 
-with open("output.txt", "wb") as file:
-    file.write(b"#pythoniscool\n")
+os.write(1, b"#pythoniscool\n")
