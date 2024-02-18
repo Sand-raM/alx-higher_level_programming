@@ -1,13 +1,14 @@
 #!/usr/bin/python3
-"""adds the State object “Louisiana”
-to the database hbtn_0e_6_usa"""
+"""Lists all State objects and corresponding City objects contained in the DB"""
 
 if __name__ == "__main__":
 
     import sys
-    from model_state import Base, State
+    from relationship_state import Base, State
+    from relationship_city import City
     from sqlalchemy import create_engine
     from sqlalchemy.orm import Session
+    from sqlalchemy.schema import Table
 
     engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'
                            .format(sys.argv[1], sys.argv[2],
@@ -15,9 +16,8 @@ if __name__ == "__main__":
     Base.metadata.create_all(engine)
 
     session = Session(engine)
-    state = session.query(State).filter(State.name == sys.argv[4]).first()
-    if state:
-        print("{}".format(state.id))
-    else:
-        print("Not found")
+    for state in session.query(State).order_by(State.id).all():
+        print("{}: {}".format(state.id, state.name))
+        for city in state.cities:
+            print("    {}: {}".format(city.id, city.name))
     session.close()
