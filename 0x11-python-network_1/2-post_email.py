@@ -1,8 +1,13 @@
 #!/usr/bin/python3
-"""Sends a POST request to the passed URL with the email as a parameter"""
-import urllib.request
-from sys import argv
+"""Sends a POST request to a given URL with a given email.
+
+Usage: ./2-post_email.py <URL> <email>
+  - Displays the body of the response.
+"""
+import sys
 import urllib.parse
+import urllib.request
+
 
 if __name__ == "__main__":
     url = sys.argv[1]
